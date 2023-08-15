@@ -29,10 +29,6 @@ async def on_ready():
     print(f'Logou como {bot.user}')
 
 @bot.command()
-async def ping(ctx):
-	await ctx.channel.send("pong")
-
-@bot.command()
 async def frame(ctx, arg1, arg2):
     driver.get(f"https://www.streetfighter.com/6/character/{arg1}/frame")
     moves_name = driver.find_elements(By.CLASS_NAME, "frame_arts__CNftl")
