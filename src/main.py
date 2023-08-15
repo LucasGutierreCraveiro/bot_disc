@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+options = webdriver.EdgeOptions()
+options.add_argument("--headless=new")
+driver = webdriver.Edge(options=options)
 
 load_dotenv("token.env")
 
@@ -21,13 +24,16 @@ async def on_message(message):
          return
     await bot.process_commands(message)
 
+@bot.event
+async def on_ready():
+    print(f'Logou como {bot.user}')
+
 @bot.command()
 async def ping(ctx):
 	await ctx.channel.send("pong")
 
 @bot.command()
 async def frame(ctx, arg1, arg2):
-    driver = webdriver.Edge()
     driver.get(f"https://www.streetfighter.com/6/character/{arg1}/frame")
     moves_name = driver.find_elements(By.CLASS_NAME, "frame_arts__CNftl")
     moves_startup = driver.find_elements(By.CLASS_NAME, "frame_startup_frame__IeKL6")
