@@ -9,7 +9,7 @@ options = webdriver.EdgeOptions()
 options.add_argument("--headless=new")
 driver = webdriver.Edge(options=options)
 
-load_dotenv("token.env")
+load_dotenv()
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
